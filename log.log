@@ -1,0 +1,17 @@
+2024-09-24 16:10:05.1272 DEBUG runtime.main:271 Debug test
+2024-09-24 16:10:05.1508 INFO runtime.main:271 Info test
+2024-09-24 16:10:05.1508 WARNING runtime.main:271 Warn test
+2024-09-24 16:10:05.1514 ERROR runtime.main:271 Error test
+2024-09-24 16:10:05.1514 FATAL runtime.main:271 Fatal test
+2024-09-24 16:10:10.2349 DEBUG runtime.main:271 Debug test
+2024-09-24 16:10:10.2568 INFO runtime.main:271 Info test
+2024-09-24 16:10:10.2573 WARNING runtime.main:271 Warn test
+2024-09-24 16:10:10.2573 ERROR runtime.main:271 Error test
+2024-09-24 16:10:10.2573 FATAL runtime.main:271 Fatal test
+2024-09-24 17:04:31.4102 DEBUG runtime.main:271 Debug test
+2024-09-24 17:04:31.4252 INFO runtime.main:271 Info test
+2024-09-24 17:04:31.4252 WARNING runtime.main:271 Warn test
+2024-09-24 17:04:31.4252 ERROR runtime.main:271 Error test
+2024-09-24 17:04:31.4252 FATAL runtime.main:271 Fatal test
+2024-09-24 22:59:09.4706 DEBUG runtime.main:271 Debug test
+2024-09-24 22:59:09.5782 INFO runtime.main:271 Info test
