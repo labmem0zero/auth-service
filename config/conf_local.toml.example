@@ -1,0 +1,10 @@
+AppName = "go-auth-services"
+
+StaticPath = "c:\\Job\\peT\\auth-service\\static"
+
+[UserDB]
+    Scheme = "postgres"
+    Server = "127.0.0.1"
+    Port = "5432"
+    Database = "postgres"
+    SSLMode = false
