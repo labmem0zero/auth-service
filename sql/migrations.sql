@@ -64,10 +64,7 @@ CREATE OR REPLACE FUNCTION auth.user_get(
     AS $$
 BEGIN
     IF _user_id = 0 AND _username = '' THEN
-        RAISE EXCEPTION 'Не указаны данные дял поиска';
-    END IF;
-
-    IF _user_id <> 0 THEN
+        RAISE EXCEPTION 'Не указаны данные для поиска';
     END IF;
 
     RETURN QUERY
