@@ -2,3 +2,4 @@
 /config/conf_*.toml
 /static
 log.log
+/certs/*local*

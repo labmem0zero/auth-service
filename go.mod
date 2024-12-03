@@ -4,10 +4,11 @@ go 1.22.6
 
 require (
 	github.com/BurntSushi/toml v1.4.0
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/mux v1.8.1
 	github.com/jmoiron/sqlx v1.4.0
-	github.com/labmem0zero/go-logger v1.0.4
+	github.com/labmem0zero/go-logger v1.0.6
 	github.com/lib/pq v1.10.9
 )
 

@@ -22,16 +22,25 @@ import (
 func main() {
 	conf := config.LoadConfig()
 
-	ls := impl.LoggerSettings{
+	tl, err := tlogger.NewLogger(conf.TelegramLoggerBotToken, conf.TelegramLoggerChatID, impl.LoggerSettings{
 		AppName:     conf.AppName,
 		AppID:       conf.AppID,
 		Environment: conf.Environment,
-	}
-	tl, err := tlogger.NewLogger(conf.TelegramLoggerBotToken, conf.TelegramLoggerChatID, ls)
+		Levels: map[string]struct{}{
+			logger.LevelErr:     {},
+			logger.LevelFatal:   {},
+			logger.LevelWarning: {},
+			logger.LevelDebug:   {},
+		},
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	fl, err := flogger.NewFileLogger("log.log", ls)
+	fl, err := flogger.NewFileLogger("log.log", impl.LoggerSettings{
+		AppName:     conf.AppName,
+		AppID:       conf.AppID,
+		Environment: conf.Environment,
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

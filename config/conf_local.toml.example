@@ -1,4 +1,5 @@
 AppName = "go-auth-services"
+CertificateName = "local.rsa.pub"
 
 StaticPath = "c:\\Job\\peT\\auth-service\\static"
 

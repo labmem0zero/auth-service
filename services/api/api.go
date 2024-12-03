@@ -7,6 +7,7 @@ import (
 	"github.com/labmem0zero/go-logger"
 
 	"auth/config"
+	"auth/http/middlewares"
 	"auth/services/api/handlers"
 	"auth/services/usecases"
 )
@@ -31,10 +32,16 @@ func (a Api) Stop(reqID string) {
 }
 
 func New(conf config.Config, l *logger.Logger, u usecases.Usecases) Api {
+	cert, err := conf.LoadKey()
+	if err != nil {
+		l.Fatal("App start", err)
+	}
+	mw := middlewares.New(l, cert)
 	h := handlers.New(l, u)
 	r := mux.NewRouter().StrictSlash(true)
+	r.Use(mw.MiddlewareRequestLogging)
 	api := r.PathPrefix("/api").Subrouter()
-	ApiV1(l, h, api)
+	ApiV1NoAuth(l, h, api)
 	return Api{
 		l:      l,
 		router: r,
