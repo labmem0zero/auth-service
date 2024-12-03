@@ -31,7 +31,9 @@ func (u Usecases) Stop(reqID string) {
 	u.l.Info(reqID, "Usecases has stopped")
 }
 
-func (u Usecases) UserCreate(reqID string, user models.UserCreate) (id int64, err error) {
-	id, err = u.udbr.UserCreate(reqID, user)
+func (u Usecases) UserCreate(reqID string, req models.UserSet) (res models.UserView, err error) {
+	var id int64
+	id, err = u.udbr.UserSet(reqID, req)
+	res = models.UserView{UserID: id, Username: req.Username}
 	return
 }

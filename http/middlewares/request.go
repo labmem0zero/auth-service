@@ -34,11 +34,11 @@ func (mw *Middlewares) MiddlewareRequestLogging(h http.Handler) http.Handler {
 			default:
 				data = "Content-Type is " + ct
 			}
-			mw.l.Debug(reqID, fmt.Sprintf("req len = %v, data = %v", len(b), data))
+			mw.l.Info(reqID, fmt.Sprintf("req len = %v, data = %v", len(b), data))
 		}
 		h.ServeHTTP(w, r)
 		spent := time.Now().Sub(start).Seconds()
-		mw.l.Debug(reqID, fmt.Sprintf("seconds spent: %v", spent))
+		mw.l.Info(reqID, fmt.Sprintf("seconds spent: %v", spent))
 	})
 }
 

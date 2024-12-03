@@ -57,6 +57,7 @@ func main() {
 	u := usecases.New(p, &l, r)
 	a := api.New(conf, &l, u)
 	srv := services.StartServices("App start", u, a)
+	l.Warn("App start", "Application has been started")
 	AwaitClose(srv, l, c)
 }
 

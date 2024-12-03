@@ -12,31 +12,25 @@ import (
 
 func (h Handlers) UserCreate(w http.ResponseWriter, r *http.Request) {
 	reqID := middlewares.GetReqID(r)
-	var u models.UserCreate
+	var u models.UserSet
 	var err error
 	if err = json.NewDecoder(r.Body).Decode(&u); err != nil {
 		w.Write([]byte(err.Error()))
 		h.l.Error(reqID, err)
 		return
 	}
-	if len(u.Username) < 5 || len(u.PWHash) == 0 {
+	if len(u.Username) < 5 || len(u.Password) == 0 {
 		err = errors.New("Wrong username or password")
 		http2.CheckErrWriteResp(w, 400, nil, err)
 		return
 	}
-	var id int64
-	if id, err = h.u.UserCreate(reqID, u); err != nil {
-		w.Write([]byte(err.Error()))
-		h.l.Error(reqID, err)
+	var res models.UserView
+	if res, err = h.u.UserCreate(reqID, u); err != nil {
+		http2.CheckErrWriteResp(w, 500, res, err)
 		return
 	}
-	res := models.UserView{
-		UserID:   id,
-		Username: u.Username,
-	}
 	if err = json.NewEncoder(w).Encode(res); err != nil {
-		w.Write([]byte(err.Error()))
-		h.l.Error(reqID, err)
+		http2.CheckErrWriteResp(w, 500, res, err)
 	}
 	return
 }

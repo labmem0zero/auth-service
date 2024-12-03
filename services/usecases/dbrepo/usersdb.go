@@ -8,7 +8,7 @@ import (
 )
 
 type UserDBRepo interface {
-	UserCreate(reqID string, user models.UserCreate) (res int64, err error)
+	UserSet(reqID string, u models.UserSet) (res int64, err error)
 }
 
 func NewUserDBRepo(l *logger.Logger, db *sqlx.DB) UserDBRepo {
@@ -23,13 +23,12 @@ type userDBRepo struct {
 	udb *sqlx.DB
 }
 
-func (d userDBRepo) UserCreate(reqID string, user models.UserCreate) (res int64, err error) {
-	err = d.udb.Get(&res, `
-	INSERT INTO vpn_auth_service.users(username, pw_hash)
-	VALUES ($1, $2)
-	ON CONFLICT (username) DO NOTHING
-	RETURNING user_id`,
-		user.Username,
-		user.PWHash)
+func (d userDBRepo) UserSet(reqID string, u models.UserSet) (res int64, err error) {
+	q := `SELECT * FROM auth.user_set($1,$2,$3)`
+	d.Info(reqID, q, u)
+	if err = d.udb.Get(&res, q, u.UserID, u.Username, u.Password); err != nil {
+		d.Error(reqID, err)
+	}
+
 	return
 }

@@ -1,12 +1,12 @@
 package models
 
-type UserCreate struct {
+type UserSet struct {
+	UserID   int64  `json:"user_id" db:"user_id"`
 	Username string `json:"username" db:"username"`
-	PWHash   string `json:"pw_hash" db:"pw_hash"`
+	Password string `json:"password" db:"password"`
 }
 
 type UserView struct {
 	UserID   int64  `json:"user_id" db:"user_id"`
 	Username string `json:"username" db:"username"`
-	PWHash   string `json:"-" db:"-"`
 }
