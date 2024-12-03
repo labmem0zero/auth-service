@@ -4,7 +4,7 @@ go 1.22.6
 
 require (
 	github.com/BurntSushi/toml v1.4.0
-	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/golang-jwt/jwt v3.2.1+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/mux v1.8.1
 	github.com/jmoiron/sqlx v1.4.0
